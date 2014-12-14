@@ -18,13 +18,16 @@ public class ArrayList implements List {
 		
 		int i=0;
 		while (list[i] != null) i++;
-		return i+1;
+		return i;
 	}
 
 	@Override
 	public ReturnObject get(int index) {
 
-		return null;
+		if (size() == 0) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE); //TODO: Doesn't explicitly say this is required so consider this further
+		if (index + 1 > size()) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		
+		return new ReturnObjectImpl(list[index]);
 	}
 
 	@Override
@@ -51,7 +54,8 @@ public class ArrayList implements List {
 
 		list[size()] = item;
 		
-		return new ReturnObjectImpl(list);
+		//TODO: This needs to be set to return empty returnObject - currently returning one with just a ErrorMessage.NO_ERROR, defined by an empty constructor
+		return new ReturnObjectImpl();
 	}
 	
 	private void extendArray()
