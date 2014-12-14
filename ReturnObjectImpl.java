@@ -1,8 +1,8 @@
 
 public class ReturnObjectImpl implements ReturnObject {
 
-	ErrorMessage errorMsg;
-	Object rtnObj;
+	private ErrorMessage errorMsg;
+	private Object rtnObj;
 	
 	public ReturnObjectImpl(ErrorMessage error)
 	{
