@@ -24,8 +24,7 @@ public class ArrayList implements List {
 	@Override
 	public ReturnObject get(int index) {
 
-		if (size() == 0) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE); //TODO: Doesn't explicitly say this is required so consider this further
-		if (index + 1 > size()) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		if (testBound(index).hasError()) return testBound(index);
 		
 		return new ReturnObjectImpl(list[index]);
 	}
@@ -33,16 +32,40 @@ public class ArrayList implements List {
 	@Override
 	public ReturnObject remove(int index) {
 
-		return null;
+		if (testBound(index).hasError()) return testBound(index);
+		
+		ReturnObject rtnItem = new ReturnObjectImpl(list[index]);
+		list[index] = null;
+		
+		while (list[index + 1] != null)
+		{
+			list[index] = list[index + 1];
+			index++;
+		}
+		
+		return rtnItem;
 	}
 
 	@Override
 	public ReturnObject add(int index, Object item) {
 		
-		//TODO: If its requested to be added at a point after all others, do we add it at end, or return error (or extend off?)
-		//		for example add(10, item) for a list only containing 8 items, what do we do?
+		if (testBound(index).hasError()) return testBound(index);
+		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
-		return null;
+		if (list.length == size() + 1) extendArray();
+		
+		for (int i = size() - 1; i >= index ; i--) { list[i+1] = list[i]; }
+		
+		list[index] = item;
+		
+		return new ReturnObjectImpl();
+	}
+	
+	private ReturnObject testBound(int index)
+	{
+		if (size() == 0) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE); //TODO: Doesn't explicitly say this is required so consider this further
+		if (index + 1 > size()) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		return new ReturnObjectImpl();
 	}
 
 	@Override
