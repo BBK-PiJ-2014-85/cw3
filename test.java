@@ -11,6 +11,11 @@ public class test {
 		List ll = new LinkedList();
 		testList(ll);
 		
+		FunctionalList fal = new FunctionalArrayList();
+		testFunctionalList(fal);
+		
+		FunctionalList fll = new FunctionalLinkedList();
+		testFunctionalList(fll);
 		
 	}
 	
@@ -61,6 +66,24 @@ public class test {
 		if (list.add(0,null).getError() != ErrorMessage.INVALID_ARGUMENT) System.out.println("Error allowing null input");
 
 		list.get(4).getReturnValue();
+		
+	}
+	
+	private static void testFunctionalList(FunctionalList list)
+	{
+		if(!list.head().hasError()) System.out.println("Functional list: hasError not correctly returned for head");
+		if(list.head().getError() != ErrorMessage.EMPTY_STRUCTURE) System.out.println("Functional list: Error not correctly returned for head");
+		if(!list.rest().isEmpty()) System.out.println("Functional List: Empty list not returned from rest() for an empty list");
+		list.add(1);
+		if(!list.rest().isEmpty()) System.out.println("Functional List: Empty list not returned from rest() for a list with one item");
+		if(!list.head().getReturnValue().toString().equals(1)) System.out.println("Functional List: head() not returned properly for lists with 1 item");		
+		list.add(2);
+		list.add(3);
+		if(!list.head().getReturnValue().toString().equals(1)) System.out.println("Functional List: head() not returned properly for lists with 1 item");
+		if(list.rest().size() != 2) System.out.println("Functional List: rest not returned properly for lists with 3 items");
+		if(!list.rest().get(0).getReturnValue().toString().equals(2)) System.out.println("Functional List: rest() not returned first entry propoerly lists with 3 items");
+		if(!list.rest().get(1).getReturnValue().toString().equals(3)) System.out.println("Functional List: rest() not returned second entry propoerly lists with 3 items");
+		
 		
 	}
 }
