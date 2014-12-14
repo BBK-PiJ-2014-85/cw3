@@ -40,6 +40,7 @@ public class ArrayList implements List {
 		while (list[index + 1] != null)
 		{
 			list[index] = list[index + 1];
+			list[index+1] = null;
 			index++;
 		}
 		
@@ -64,7 +65,7 @@ public class ArrayList implements List {
 	private ReturnObject testBound(int index)
 	{
 		if (size() == 0) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE); //TODO: Doesn't explicitly say this is required so consider this further
-		if (index + 1 > size()) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		if (index + 1 > size() || index < 0) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		return new ReturnObjectImpl();
 	}
 
