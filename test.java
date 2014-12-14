@@ -8,7 +8,8 @@ public class test {
 		List al = new ArrayList();
 		testList(al);
 				
-		
+		List ll = new LinkedList();
+		testList(ll);
 		
 		
 	}
@@ -52,9 +53,14 @@ public class test {
 		list.remove(0);
 		list.remove(0);
 		list.remove(0);
+		if (!list.isEmpty()) System.out.println("Error with isEmpty()");
 		if (list.remove(0).getError() != ErrorMessage.EMPTY_STRUCTURE) System.out.println("Error not returning on empty structure " + list.remove(0).getError().toString()); //this should provide a zero entry error
 		
 		if (list.add(null).getError() != ErrorMessage.INVALID_ARGUMENT) System.out.println("Error allowing null input");
+		list.add(3);
+		if (list.add(0,null).getError() != ErrorMessage.INVALID_ARGUMENT) System.out.println("Error allowing null input");
 
+		list.get(4).getReturnValue();
+		
 	}
 }
