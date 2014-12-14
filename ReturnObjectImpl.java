@@ -15,6 +15,11 @@ public class ReturnObjectImpl implements ReturnObject {
 		errorMsg = ErrorMessage.NO_ERROR;
 	}
 	
+	public ReturnObjectImpl()
+	{
+		errorMsg = ErrorMessage.NO_ERROR;
+	}
+	
 	@Override
 	public boolean hasError() {
 		if (errorMsg == ErrorMessage.NO_ERROR) return false;
