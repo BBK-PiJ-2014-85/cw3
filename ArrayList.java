@@ -6,14 +6,19 @@ public class ArrayList implements List {
 	
 	@Override
 	public boolean isEmpty() {
-	
+		
+		if (list[0] == null) return true;
 		return false;
 	}
 
 	@Override
 	public int size() {
 
-		return 0;
+		if (isEmpty()) return 0;
+		
+		int i=0;
+		while (list[i] != null) i++;
+		return i+1;
 	}
 
 	@Override
@@ -40,13 +45,11 @@ public class ArrayList implements List {
 	@Override
 	public ReturnObject add(Object item) {
 	
-		if (item == null) return new ReturnObjectImpl(error);
+		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
-		if (list[list.length] != null) extendArray();
-		
-		int i=0;
-		while (list[i] != null) i++;
-		list[i] = item;
+		if (list.length == size() + 1) extendArray();
+
+		list[size()] = item;
 		
 		return new ReturnObjectImpl(list);
 	}
