@@ -4,7 +4,16 @@ public class ReturnObjectImpl implements ReturnObject {
 	ErrorMessage errorMsg;
 	Object rtnObj;
 	
-	//TODO: should these be set as a constructor, or will they be set a different way?
+	public ReturnObjectImpl(ErrorMessage error)
+	{
+		errorMsg = error;
+	}
+	
+	public ReturnObjectImpl(Object item)
+	{
+		rtnObj = item;
+		errorMsg = ErrorMessage.NO_ERROR;
+	}
 	
 	@Override
 	public boolean hasError() {
