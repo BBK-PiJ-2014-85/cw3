@@ -68,7 +68,9 @@ public class LinkedList implements List {
 	@Override
 	public ReturnObject add(int index, Object item) {
 		
+
 		if (testBounds(index).hasError()) return testBounds(index);
+		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
 		if (index == 0)
 		{
@@ -88,6 +90,8 @@ public class LinkedList implements List {
 	
 	@Override
 	public ReturnObject add(Object item) {
+	
+		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
 		if (value == null) 
 		{
