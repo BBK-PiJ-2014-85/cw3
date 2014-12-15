@@ -57,7 +57,7 @@ public class LinkedList implements List {
 	
 	private ReturnObject testBounds(int index)
 	{
-		if (next == null && value==null) {return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);}
+		if (next == null && value==null) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		if (index < 0) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		if (next == null && index !=0) { return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);}
 		return new ReturnObjectImpl();
@@ -68,7 +68,7 @@ public class LinkedList implements List {
 	@Override
 	public ReturnObject add(int index, Object item) {
 		
-
+		//TODO: Check boundaries for add(index,item) and that it is truely intended not to be able to add to an empty string at point 0
 		if (testBounds(index).hasError()) return testBounds(index);
 		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
