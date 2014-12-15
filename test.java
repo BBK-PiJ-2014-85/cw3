@@ -17,6 +17,9 @@ public class test {
 		FunctionalList fll = new FunctionalLinkedList();
 		testFunctionalList(fll);
 		
+		SampleableList sl = new SampleableListImpl();
+		testSampleableList(sl);
+		
 	}
 	
 	private static void testReturnObject()
@@ -82,8 +85,21 @@ public class test {
 		if(!list.head().getReturnValue().toString().equals("1")) System.out.println("Functional List: head() not returned properly for lists with 1 item");
 		if(list.rest().size() != 2) System.out.println("Functional List: rest not returned properly for lists with 3 items");
 		if(!list.rest().get(0).getReturnValue().toString().equals("2")) System.out.println("Functional List: rest() not returned first entry properly lists with 3 items");
-		if(!list.rest().get(1).getReturnValue().toString().equals("3")) System.out.println("Functional List: rest() not returned second entry propoerly lists with 3 items");
-		
+		if(!list.rest().get(1).getReturnValue().toString().equals("3")) System.out.println("Functional List: rest() not returned second entry propoerly lists with 3 items");	
+	}
+	
+	private static void testSampleableList(SampleableList list)
+	{
+		if(list.sample().size() != 0) System.out.println("Sampleable List: Empty list not returned correctly");
+		list.add(1);
+		list.add(2);
+		if(list.sample().size() != 1 || !list.sample().get(0).getReturnValue().toString().equals("1")) System.out.println("Sampleable List: List of 1 not correctly returned");
+		list.add(3);
+		list.add(4);
+		if(list.sample().size() != 2 || !list.sample().get(0).getReturnValue().toString().equals("1") || !list.sample().get(1).getReturnValue().toString().equals("3")) 
+		{
+			System.out.println("Sampleable List: List of 2 not correctly returned");
+		}
 		
 	}
 }
