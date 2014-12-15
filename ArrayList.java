@@ -50,6 +50,9 @@ public class ArrayList implements List {
 	@Override
 	public ReturnObject add(int index, Object item) {
 		
+		//TODO: remove the checks as not all required
+		//TODO: check whether they really mean greater than or equal (i.e. we cant add to 0 if list is empty). For now, have qwerk in stack program to account for this
+		
 		if (testBound(index).hasError()) return testBound(index);
 		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
