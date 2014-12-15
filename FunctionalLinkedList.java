@@ -7,7 +7,7 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 		if (isEmpty()) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		return new ReturnObjectImpl(get(0).getReturnValue());
 	}
-
+	
 	@Override
 	public FunctionalList rest() {
 		
