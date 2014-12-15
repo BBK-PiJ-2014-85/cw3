@@ -20,6 +20,10 @@ public class test {
 		SampleableList sl = new SampleableListImpl();
 		testSampleableList(sl);
 		
+		Stack stack = new StackImpl(new ArrayList());
+		testStack(stack);
+		stack = new StackImpl(new LinkedList());
+		testStack(stack);
 	}
 	
 	private static void testReturnObject()
@@ -33,7 +37,9 @@ public class test {
 	
 	private static void testList(List list)
 	{
+
 		//add 5 items to make sure expand works
+		//System.out.println(list.add("word").getError()); //TODO: test point add(0,item)
 		if (list.add("word").hasError()) System.out.println("Error in add 1");
 		if (list.add(list).getError() != ErrorMessage.NO_ERROR) System.out.println("Error in add 2");
 		list.add(3);
@@ -100,6 +106,21 @@ public class test {
 		{
 			System.out.println("Sampleable List: List of 2 not correctly returned");
 		}
+	}
+	
+	private static void testStack(Stack stack)
+	{
+		if (!stack.isEmpty()) System.out.println("Stack: Error with isEmpty()");
+		if (!stack.top().hasError() || stack.top().getError() != ErrorMessage.EMPTY_STRUCTURE) System.out.println("Stack: Error for empty stack when using top() not treated properly");
+		if (!stack.pop().hasError() || stack.top().getError() != ErrorMessage.EMPTY_STRUCTURE) System.out.println("Stack: Error for empty stack when using pop() not treated properly");
+		stack.push(1);
+		stack.push(2);
+		if(stack.size() != 2 || !stack.top().getReturnValue().toString().equals("2")) System.out.println("Stack: Error with stack of two items");
+		if(stack.size() != 2 || !stack.top().getReturnValue().toString().equals("2")) System.out.println("Stack: Error with top() changing stack");
+		stack.push(null); // This checks this doesn't fall over or add anything. Given that push() doesn't return anything an error code cannot be returned.
+		if(stack.size() != 2 || !stack.top().getReturnValue().toString().equals("2")) System.out.println("Stack: Error with nulls entering stack");
+		stack.pop();
+		if(stack.size() != 1 || !stack.top().getReturnValue().toString().equals("1")) System.out.println("Stack: Error with pop()");
 		
 	}
 }
