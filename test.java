@@ -123,4 +123,18 @@ public class test {
 		if(stack.size() != 1 || !stack.top().getReturnValue().toString().equals("1")) System.out.println("Stack: Error with pop()");
 		
 	}
+	
+	private static void testImprovedStack(ImprovedStack stack)
+	{
+		testStack(stack);
+		
+		stack.push(1);
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		
+		
+		
+		
+	}
 }
