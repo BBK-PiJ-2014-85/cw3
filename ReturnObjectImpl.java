@@ -4,6 +4,13 @@ public class ReturnObjectImpl implements ReturnObject {
 	private ErrorMessage errorMsg;
 	private Object rtnObj;
 	
+	/* It is possible in theory to create a return object with error message "no_error" but without an 
+	 * object via running the constructor with a no_error error message only. However, resolving this would involve
+	 * creating another specific error message for this, and the code using this class would never want to create this 
+	 * either, and so this has not been addressed within this class as the error would be with the class running this. 
+	 */
+
+	
 	public ReturnObjectImpl(ErrorMessage error)
 	{
 		errorMsg = error;
@@ -15,7 +22,7 @@ public class ReturnObjectImpl implements ReturnObject {
 		errorMsg = ErrorMessage.NO_ERROR;
 	}
 	
-	public ReturnObjectImpl()
+	public ReturnObjectImpl() //TODO: Do I need this constructor? Seems unlikely to be useful.
 	{
 		errorMsg = ErrorMessage.NO_ERROR;
 	}
@@ -28,7 +35,6 @@ public class ReturnObjectImpl implements ReturnObject {
 
 	@Override
 	public ErrorMessage getError() {
-		//TODO: Currently not sure why would need anything more in here
 		return errorMsg;
 	}
 
