@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class TestLinkedList {
 
-	List list;
+	FunctionalList list;
 	Object[][] tests;
 	
 	int resultSize;
@@ -19,80 +19,80 @@ public class TestLinkedList {
 	
 	@Before
 	public void setUpList() {
-		List emptyList = new LinkedList();
+		FunctionalList emptyList = new FunctionalLinkedList();
 		
-		List twoElements = new LinkedList();
+		FunctionalList twoElements = new FunctionalLinkedList();
 			twoElements.add("First");
 			twoElements.add("Second");
 			
-		List oneElement = new LinkedList();
+		FunctionalList oneElement = new FunctionalLinkedList();
 			String[] oneElementItem = new String[] {"first","second"};
 			oneElement.add(oneElementItem);
 		
-		List emptyAfterOneRemoved = new LinkedList();
+		FunctionalList emptyAfterOneRemoved = new FunctionalLinkedList();
 			emptyAfterOneRemoved.add(1);
 			emptyAfterOneRemoved.remove(0);
 		
-		List emptyAfterRemOOBError = new LinkedList();
+		FunctionalList emptyAfterRemOOBError = new FunctionalLinkedList();
 			emptyAfterRemOOBError.add("Entry");
 			emptyAfterRemOOBError.remove(0);
 			emptyAfterRemOOBError.remove(-1);
 		
-		List emptyAfterGetOOBError = new LinkedList();
+		FunctionalList emptyAfterGetOOBError = new FunctionalLinkedList();
 			emptyAfterGetOOBError.add("Entry");
 			emptyAfterGetOOBError.remove(0);
 			emptyAfterGetOOBError.get(-1);
 		
-		List emptyAfterNullError = new LinkedList();;
+		FunctionalList emptyAfterNullError = new FunctionalLinkedList();;
 			emptyAfterNullError.add(null);
 		
-		List emptyAfterRemRetreiveEmpty = new LinkedList();;
+		FunctionalList emptyAfterRemRetreiveEmpty = new FunctionalLinkedList();;
 			emptyAfterRemRetreiveEmpty.add("Entry");
 			emptyAfterRemRetreiveEmpty.remove(0);
 			emptyAfterRemRetreiveEmpty.remove(0);
 		
-		List emptyAfterGetRetreiveEmpty = new LinkedList();;
+		FunctionalList emptyAfterGetRetreiveEmpty = new FunctionalLinkedList();;
 			emptyAfterGetRetreiveEmpty.add("Entry");
 			emptyAfterGetRetreiveEmpty.remove(0);
 			emptyAfterGetRetreiveEmpty.get(0);
 		
-		List twoElementsAfterOOBRemLowError = new LinkedList();
+		FunctionalList twoElementsAfterOOBRemLowError = new FunctionalLinkedList();
 			twoElementsAfterOOBRemLowError.add(1);
 			twoElementsAfterOOBRemLowError.add(2);
 			twoElementsAfterOOBRemLowError.remove(-1);
 			
-		List twoElementsAfterOOBGetLowError = new LinkedList();
+		FunctionalList twoElementsAfterOOBGetLowError = new FunctionalLinkedList();
 			twoElementsAfterOOBGetLowError.add(1);
 			twoElementsAfterOOBGetLowError.add(2);
 			twoElementsAfterOOBGetLowError.get(-1);
 		
-		List twoElementsAfterOOBRemHighError = new LinkedList();
+		FunctionalList twoElementsAfterOOBRemHighError = new FunctionalLinkedList();
 			twoElementsAfterOOBRemHighError.add(1);
 			twoElementsAfterOOBRemHighError.add(2);
 			twoElementsAfterOOBRemHighError.remove(3);
 			
-		List twoElementsAfterOOBGetHighError = new LinkedList();
+		FunctionalList twoElementsAfterOOBGetHighError = new FunctionalLinkedList();
 			twoElementsAfterOOBGetHighError.add(1);
 			twoElementsAfterOOBGetHighError.add(2);
 			twoElementsAfterOOBGetHighError.get(3);
 		
-		List twoElementsAfterNullError = new LinkedList();
+		FunctionalList twoElementsAfterNullError = new FunctionalLinkedList();
 			twoElementsAfterNullError.add("word");
 			twoElementsAfterNullError.add(123456789);
 			twoElementsAfterNullError.add(null);
 		
-		List threeElements = new LinkedList();
-		threeElements.add("first");
-		threeElements.add("second");
-		threeElements.add(3);
+		FunctionalList threeElements = new FunctionalLinkedList();
+			threeElements.add("first");
+			threeElements.add("second");
+			threeElements.add(3);
 		
-		List fourElements = new LinkedList();
-		fourElements.add("first");
-		fourElements.add("second");
-		fourElements.add(3);
-		fourElements.add(4);
+		FunctionalList fourElements = new FunctionalLinkedList();
+			fourElements.add("first");
+			fourElements.add("second");
+			fourElements.add(3);
+			fourElements.add(4);
 		
-		List fiveElements = new LinkedList();
+		FunctionalList fiveElements = new FunctionalLinkedList();
 			fiveElements.add(1);
 			fiveElements.add("two");
 			fiveElements.add(3.00);
@@ -125,7 +125,7 @@ public class TestLinkedList {
 	
 		private void assignValues(Object[] test)
 		{
-			list = (List) test[0];
+			list = (FunctionalList) test[0];
 			resultSize = (int) test[1];
 			resultIsEmpty = (boolean) test[2];
 			resultFirstItem = test[3];
@@ -356,6 +356,82 @@ public class TestLinkedList {
 		assertEquals(list.get(4).getReturnValue(), resultFourthItem);
 		assertEquals(list.get(5).getReturnValue(), resultFifthItem);
 		}
+	}
+	
+	@Test
+	public void testHead()
+	{
+		for (Object[] test : tests)
+		{
+		
+		assignValues(test);
+			
+		assertEquals(list.head().getError(), (resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE: ErrorMessage.NO_ERROR));
+		assertEquals(list.head().getReturnValue(), resultFirstItem);
+		assertEquals(list.size(), resultSize);
+
+		assertEquals(list.get(0).getReturnValue(), resultFirstItem);
+		assertEquals(list.get(1).getReturnValue(), resultSecondItem);
+		assertEquals(list.get(2).getReturnValue(), resultThirdItem);
+		assertEquals(list.get(3).getReturnValue(), resultFourthItem);
+		assertEquals(list.get(4).getReturnValue(), resultFifthItem);
+		}
+	}
+	
+	@Test
+	public void testListNotAlteredByHead()
+	{
+		FunctionalList testList = new FunctionalLinkedList();
+		String[] testArray = new String [] {"original","two"};
+		testList.add(testArray);
+		String[] newObject = (String[]) testList.head().getReturnValue();
+		newObject[0] = "changed";
+		assertEquals(((String[])testList.head().getReturnValue())[0], "original");
+	}
+	
+	@Test
+	public void testRestReturnEmpty()
+	{
+		for (Object[] test : tests)
+		{
+		assignValues(test);
+		if (list.isEmpty())
+		{
+			assertTrue(list.rest().isEmpty());	
+		}
+		}
+	}
+	
+	@Test
+	public void testRestValues()
+	{
+		for (Object[] test : tests)
+		{
+		assignValues(test);
+		FunctionalList restList = list.rest();
+		assertEquals(list.get(1).getReturnValue(), restList.get(0).getReturnValue());
+		assertEquals(list.get(2).getReturnValue(), restList.get(1).getReturnValue());
+		assertEquals(list.get(3).getReturnValue(), restList.get(2).getReturnValue());
+		assertEquals(list.get(4).getReturnValue(), restList.get(3).getReturnValue());
+		assertNull(restList.get(4).getReturnValue());
+		}
+	}
+	
+	@Test 
+	public void testRestNotEffectOriginalList()
+	{
+		FunctionalList testList = new FunctionalLinkedList();
+		String[] testArray = new String [] {"original","two"};
+		testList.add(1);
+		testList.add(testArray);
+		testList.add(60);
+		FunctionalList restList = testList.rest();
+		restList.add(4);
+		restList.remove(0);
+		assertEquals(testList.get(0).getReturnValue(), resultFirstItem);
+		assertEquals(testList.get(0).getReturnValue(), resultSecondItem);
+		assertEquals(testList.get(0).getReturnValue(), resultThirdItem);
+
 	}
 	
 	
