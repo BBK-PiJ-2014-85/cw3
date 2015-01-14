@@ -21,7 +21,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public class TestArrayList {
-	FunctionalList list;
+	List list;
 
 	int index;
 	
@@ -33,7 +33,11 @@ public class TestArrayList {
 	Object resultFourthItem;
 	Object resultFifthItem;
 	Object resultLastItem;
-	
+
+	public List createStartingList()
+	{
+		return new ArrayList();
+	}
 	
 	public TestArrayList(int index, String name)
 	{
@@ -48,106 +52,106 @@ public class TestArrayList {
 	
 
 	public void setCleanList(int index)
-	{
-		list = new FunctionalArrayList();
-		if (index == 0)
+	{			
+		list = createStartingList();
+		if (index == 0) // Create an empty list
 		{
 			setElements(0, true, null,null,null,null,null, null);
 		}
-		if (index == 1)
+		if (index == 1) // Create a list with two elements
 		{
 			list.add("First");
 			list.add("Second");
 			setElements(2, false, "First", "Second",null,null,null,"Second");
 		}
-		else if (index == 2)
+		else if (index == 2) // Create a list with one element, which also tests a complex type (String[])
 		{
 			String[] oneElementItem = new String[] {"first","second"};
 			list.add(oneElementItem);			
 			setElements(1, false, oneElementItem,null,null,null,null, oneElementItem);
 		}
-		else if (index == 3)
+		else if (index == 3) // Create a list which has had an element added then removed, to leave an empty list
 		{
 			list.add(1);
 			list.remove(0);		
-			setElements(1, false, 1,null,null,null,null,1);
+			setElements(0, true, null,null,null,null,null,null);
 		}
-		else if (index == 4)
+		else if (index == 4) // Create a list which has had an element added and removed, and then has an "out of bounds" error caused by the remove() method
 		{
 			list.add("Entry");
 			list.remove(0);
 			list.remove(-1);
 			setElements(0, true, null,null,null,null,null, null);
 		}
-		else if (index == 5)
+		else if (index == 5) // Create a list which has had an element added and removed, and then has an "out of bounds" error caused by the get() method
 		{
 			list.add("Entry");
 			list.remove(0);
 			list.get(-1);
 			setElements(0, true, null,null,null,null,null, null);
 		}
-		else if (index == 6)
+		else if (index == 6) //Create a list which has had a null added to it
 		{
 		list.add(null);
 		setElements(0, true, null,null,null,null,null, null);
 		}
-		else if (index == 7)
+		else if (index == 7) // Create a list which has had an element added and removed, then theempty_structure error trying to remove() from an empty list
 		{
 			list.add("Entry");
 			list.remove(0);
 			list.remove(0);
 			setElements(0, true, null,null,null,null,null, null);
 		}
-		else if (index == 8)
+		else if (index == 8) // Create a list which has had an element added and removed, then the empty_structure error trying to get() from an empty list
 		{
 			list.add("Entry");
 			list.remove(0);
 			list.get(0);
 			setElements(0, true, null,null,null,null,null, null);
 		}
-		else if (index == 9) 
+		else if (index == 9) // Create a list which has had two elements added, then an OOB (under bounds) from the remove() leaving a non-empty list
 		{
 			list.add(1);
 			list.add(2);
 			list.remove(-1);
 			setElements(2, false, 1,2,null,null,null, 2);
 		}
-		else if (index == 10)
+		else if (index == 10) // Create a list which has had two elements added, then an OOB error (under bounds) from the get() leaving a non-empty list
 		{
 		list.add(1);
 		list.add(2);
 		list.get(-1);
 		setElements(2, false, 1,2,null,null,null, 2);
 		}
-		else if (index == 11)
+		else if (index == 11) // Create a list which has had two elements added, then an OOB error (over bounds) from the remove() leaving a non-empty list
 		{
 		list.add(1);
 		list.add(2);
 		list.remove(3);
 		setElements(2, false, 1,2,null,null,null, 2);
 		}
-		else if (index == 12)
+		else if (index == 12) // Create a list which has had two elements added, then an OOB error (over bounds) from the get() leaving a non-empty list
 		{
 		list.add(1);
 		list.add(2);
 		list.get(3);
 		setElements(2, false, 1,2,null,null,null, 2);
 		}
-		else if (index == 13)
+		else if (index == 13) // Create a list which has two elements followed by attempting to add a null
 		{
 		list.add("word");
 		list.add(123456789);
 		list.add(null);
 		setElements(2, false, "word",123456789,null,null,null, 123456789);
 		}
-		else if (index == 14)
+		else if (index == 14) // Create a list with 3 elements
 		{
 			list.add("first");
 			list.add("second");
 			list.add(3);
 			setElements(3, false, "first","second",3,null,null, 3);
 		}
-		else if (index == 15)
+		else if (index == 15) // Create a list with 4 elements (especially important to check arraylist correctly enlarges arrays)
 		{
 			list.add("first");
 		list.add("second");
@@ -155,7 +159,7 @@ public class TestArrayList {
 		list.add(4);
 		setElements(4, false, "first","second",3,4,null, 4);
 		}
-		else if (index == 16)
+		else if (index == 16) // Create a list with 5 elements, and also a complex element type (an Object[])
 		{
 		list.add(1);
 		list.add("two");
@@ -163,7 +167,7 @@ public class TestArrayList {
 		Object[] fourthItem = new Object[] {4,"th entry"};
 		list.add(fourthItem);
 		list.add(5);
-		setElements(3, false, 1,"two",3.00,fourthItem,null, fourthItem);
+		setElements(5, false, 1,"two",3.00,fourthItem,5, 5);
 		}
 	}
 	
@@ -345,11 +349,23 @@ public class TestArrayList {
 		assertEquals(list.get(4).getReturnValue(), resultFourthItem);
 		assertEquals(list.get(5).getReturnValue(), resultFifthItem);
 	}
-	
+
+	@Test
+	public void testManyElements()
+	{
+		int testAmount = 10000;
+		for (int i = 0; i < testAmount; i++)
+		{
+			list.add(i);
+		}
+		
+		assertEquals(resultSize + testAmount , list.size());	
+	}
+	/*
 	@Test
 	public void testHeadEmptyError()
 	{
-		assertEquals(list.head().getError(), (resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE: ErrorMessage.NO_ERROR));
+		assertEquals( list.head().getError(), (resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE: ErrorMessage.NO_ERROR));
 	}
 	
 	@Test
@@ -426,27 +442,7 @@ public class TestArrayList {
 
 	}
 	
-	@Test
-	public void testManyElements()
-	{
-		int testAmount = 10000;
-		for (int i = 0; i < testAmount; i++)
-		{
-			list.add(i);
-		}
-		
-		assertEquals(resultSize + testAmount , list.size());
-		
-		
-		
-	}
-	
-	
-	
-	
-
-
-
+*/
 }
 
 
