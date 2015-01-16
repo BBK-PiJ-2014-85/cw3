@@ -18,16 +18,10 @@ import org.junit.runners.Parameterized.Parameters;
  * 
  */
 
-
 /*
- * TODO:
- * 	- add clear comments to this class
- *  - fix last test to make sense Head()
- *  - reorder methods to make easier to follow
- *  - create as an abstract class so it can just be extended to test linked list as well
- *  - fix the bugs raised by the tests (the bounds issue) and consider the cloning further
+ * TODO: add method to check all elememnts and size to avoid repetition
+ * 		- add final methods to testFunctionalList
  */
-
 
 @RunWith(Parameterized.class)
 public abstract class TestList {
