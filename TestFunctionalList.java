@@ -87,18 +87,32 @@ public abstract class TestFunctionalList extends TestList{
 	@Test 
 	public void testRestNotEffectOriginalList()
 	{
-		FunctionalList testList = new FunctionalArrayList();
-		String[] testArray = new String [] {"original","two"};
-		testList.add(1);
-		testList.add(testArray);
-		testList.add(60);
-		FunctionalList restList = testList.rest();
-		restList.add(4);
+		FunctionalList restList = ((FunctionalList) list).rest();
+		
+		restList.add(1);
+		restList.add(2);
 		restList.remove(0);
-		assertEquals(list.get(0).getReturnValue(), resultFirstItem);
-		assertEquals(testList.get(0).getReturnValue(), resultSecondItem);
-		assertEquals(testList.get(0).getReturnValue(), resultThirdItem);
+		
+		assertEquals(resultSize, list.size());
+		assertEquals(resultFirstItem, list.get(0).getReturnValue());
+		assertEquals(resultSecondItem, list.get(1).getReturnValue());
+		assertEquals(resultThirdItem, list.get(2).getReturnValue());
+		assertEquals(resultFourthItem, list.get(3).getReturnValue());
+		assertEquals(resultFifthItem, list.get(4).getReturnValue());
+	}
 
+	@Test
+	public void testAlterComplexTypesInRestNotAlterOriginalList()
+	{
+		list.add(1);
+		list.add(new String[] {"original","second"});
+		FunctionalList restList = ((FunctionalList) list).rest();
+		String[] complexObj= (String[])restList.get(resultSize).getReturnValue();
+		complexObj[0] = "changed";
+		
+		assertEquals("changed",((String[])restList.get(resultSize).getReturnValue())[0]);
+		assertEquals("original",((String[])restList.get(resultSize + 1).getReturnValue())[0]);
+		
 	}
 }
 
