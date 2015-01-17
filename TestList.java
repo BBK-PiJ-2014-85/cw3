@@ -244,7 +244,7 @@ public abstract class TestList {
 	
 	@Test
 	public void testAddItem() {
-		assertEquals(ErrorMessage.NO_ERROR, list.add("Word added"));
+		assertEquals(ErrorMessage.NO_ERROR, list.add("Word added").getError());
 		assertEquals(resultSize + 1 , list.size());
 		assertEquals("Word added", list.get(resultSize).getReturnValue());
 	}
