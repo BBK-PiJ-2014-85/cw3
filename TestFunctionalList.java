@@ -24,25 +24,25 @@ public abstract class TestFunctionalList extends TestList{
 	@Test
 	public void testHeadEmptyError()
 	{
-		assertEquals( ((FunctionalList) list).head().getError(), (resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE: ErrorMessage.NO_ERROR));
+		assertEquals((resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE: ErrorMessage.NO_ERROR), ((FunctionalList) list).head().getError());
 	}
 	
 	@Test
 	public void testHeadReturnItem()
 	{		
-		assertEquals(((FunctionalList) list).head().getReturnValue(), resultFirstItem);
+		assertEquals(resultFirstItem, ((FunctionalList) list).head().getReturnValue());
 	}
 	
 	@Test
 	public void testListUnchangedAfterHead()
 	{
 		((FunctionalList) list).head();
-		assertEquals(list.size(), resultSize);
-		assertEquals(list.get(0).getReturnValue(), resultFirstItem);
-		assertEquals(list.get(1).getReturnValue(), resultSecondItem);
-		assertEquals(list.get(2).getReturnValue(), resultThirdItem);
-		assertEquals(list.get(3).getReturnValue(), resultFourthItem);
-		assertEquals(list.get(4).getReturnValue(), resultFifthItem);
+		assertEquals(resultSize,list.size());
+		assertEquals(resultFirstItem, list.get(0).getReturnValue());
+		assertEquals(resultSecondItem, list.get(1).getReturnValue());
+		assertEquals(resultThirdItem, list.get(2).getReturnValue());
+		assertEquals(resultFourthItem, list.get(3).getReturnValue());
+		assertEquals(resultFifthItem, list.get(4).getReturnValue());
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public abstract class TestFunctionalList extends TestList{
 		testList.add(testArray);
 		String[] newObject = (String[]) testList.head().getReturnValue();
 		newObject[0] = "changed";
-		assertEquals(((String[])testList.head().getReturnValue())[0], "original");
+		assertEquals("original", ((String[])testList.head().getReturnValue())[0]);
 	}
 	
 	@Test
