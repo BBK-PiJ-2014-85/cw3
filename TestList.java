@@ -227,114 +227,114 @@ public abstract class TestList {
 	
 	@Test
 	public void testIsEmpty() {
-		assertEquals(list.isEmpty(), resultIsEmpty);
+		assertEquals(resultIsEmpty, list.isEmpty());
 	}
 	
 	@Test
 	public void testSize() {
-		assertEquals(list.size(), resultSize);
+		assertEquals(resultSize, list.size());
 	}
 	
 	@Test
 	public void testCorrectErrorAndSizeOnAddNull() {
-		assertEquals(list.add(null).getError(), ErrorMessage.INVALID_ARGUMENT);
-		assertEquals(list.size(), resultSize);
-		assertEquals(list.get(0).getReturnValue(), resultFirstItem);
+		assertEquals(ErrorMessage.INVALID_ARGUMENT, list.add(null).getError());
+		assertEquals(resultSize, list.size());
+		assertEquals(resultFirstItem, list.get(0).getReturnValue());
 	}
 	
 	@Test
 	public void testAddItem() {
-		assertEquals(list.add("Word added").getError(), ErrorMessage.NO_ERROR);
+		assertEquals(ErrorMessage.NO_ERROR, list.add("Word added"));
 		assertEquals(resultSize + 1 , list.size());
-		assertEquals(list.get(resultSize).getReturnValue(),"Word added");
+		assertEquals("Word added", list.get(resultSize).getReturnValue());
 	}
 	
 	@Test
 	public void testGetNegativeIndexError()
 	{
-		assertEquals(list.get(-1).getError(), (resultIsEmpty ? ErrorMessage.EMPTY_STRUCTURE : ErrorMessage.INDEX_OUT_OF_BOUNDS) );
+		assertEquals((resultIsEmpty ? ErrorMessage.EMPTY_STRUCTURE : ErrorMessage.INDEX_OUT_OF_BOUNDS), list.get(-1).getError());
 		assertEquals(resultSize, list.size());
 	}
 	 
 	@Test
 	public void testGetOverboundError()
 	{
-		assertEquals(list.get(resultSize).getError(), (resultIsEmpty ? ErrorMessage.EMPTY_STRUCTURE: ErrorMessage.INDEX_OUT_OF_BOUNDS) );
+		assertEquals((resultIsEmpty ? ErrorMessage.EMPTY_STRUCTURE: ErrorMessage.INDEX_OUT_OF_BOUNDS) ,list.get(resultSize).getError());
 		assertEquals(resultSize, list.size());
 	}
 	
 	@Test
 	public void testGetSecondItem()
 	{
-		assertEquals(list.get(1).getReturnValue(), resultSecondItem);
+		assertEquals(resultSecondItem, list.get(1).getReturnValue());
 		assertEquals(resultSize, list.size());
-		assertEquals(list.get(1).getReturnValue(), resultSecondItem);
+		assertEquals(resultSecondItem, list.get(1).getReturnValue());
 		
 	}
 	
 	@Test
-	public void testGetFifthItem()
+	public void testGetFifthItem() //this is particularly of interest as it involved the array to be expanded for arraylist
 	{
-		assertEquals(list.get(4).getReturnValue(), resultFifthItem);
+		assertEquals(resultFifthItem, list.get(4).getReturnValue());
 		assertEquals(resultSize, list.size());
-		assertEquals(list.get(4).getReturnValue(), resultFifthItem);	 
+		assertEquals(resultFifthItem, list.get(4).getReturnValue());	 
 	}
 	
 	@Test
 	public void testRemNegativeIndexError()
 	{
-		 assertEquals(list.remove(-1).getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		 assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.remove(-1).getError());
 		 assertEquals(resultSize, list.size());
 	}
 	 
 	@Test
 	public void testRemOverboundError()
 	{
-		 assertEquals(list.remove(resultSize).getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		 assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.remove(resultSize).getError());
 		 assertEquals(resultSize, list.size());
 	}
 	
 	@Test
 	public void testRemFirstItem()
 	{
-			assertEquals(list.remove(0).getReturnValue(), resultFirstItem);
+			assertEquals(resultFirstItem, list.remove(0).getReturnValue());
 			assertEquals(Math.max(resultSize - 1, 0), list.size());
-			assertEquals(list.get(0).getReturnValue(), resultSecondItem);
+			assertEquals(resultSecondItem, list.get(0).getReturnValue());
 	}
 	
 	@Test
 	public void testRemFourthItem()
 	{
-		assertEquals(list.remove(3).getReturnValue(), resultFourthItem);
+		assertEquals(resultFourthItem, list.remove(3).getReturnValue());
 		assertEquals((resultFourthItem == null ? resultSize: resultSize - 1), list.size());
-		assertEquals(list.get(3).getReturnValue(), resultFifthItem);	 
+		assertEquals( resultFifthItem,list.get(3).getReturnValue());	 
 
 	}
 	
 	@Test
 	public void testAddIndexErrorNegativeIndex()
 	{
-		assertEquals(list.add(-1, "item").getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.add(-1, "item").getError());
 	}
 	
 	@Test
 	public void testAddIndexErrorUpperBoundIndex()
 	{
-		assertEquals(list.add(list.size(), "item").getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.add(list.size(), "item").getError());
 	}
 	
 	@Test
 	public void testErrorMessageAddItemIndexAtZero()
 	{
-		assertEquals(list.add(0, "item").getError(), (resultIsEmpty ? ErrorMessage.INDEX_OUT_OF_BOUNDS : ErrorMessage.NO_ERROR));
+		assertEquals((resultIsEmpty ? ErrorMessage.INDEX_OUT_OF_BOUNDS : ErrorMessage.NO_ERROR), list.add(0, "item").getError());
 	}
 	
 	@Test 
 	public void testAddItemIndexAtZero()
 	{
 		list.add(0, "item");
-		assertEquals(list.get(0).getReturnValue(), (resultIsEmpty ? null : "item"));
-		assertEquals(list.get(1).getReturnValue(), resultFirstItem);
+		assertEquals((resultIsEmpty ? null : "item"), list.get(0).getReturnValue());
+		assertEquals(resultFirstItem, list.get(1).getReturnValue());
 		assertEquals((resultIsEmpty ? resultSize : resultSize + 1), list.size());	
 	}
 	
@@ -345,8 +345,8 @@ public abstract class TestList {
 		{
 			int end = resultSize - 1;
 			list.add(end, "item");
-			assertEquals(list.get(end).getReturnValue(),"item");
-			assertEquals(list.get(end + 1).getReturnValue(), resultLastItem);
+			assertEquals("item",list.get(end).getReturnValue());
+			assertEquals(resultLastItem,list.get(end + 1).getReturnValue());
 			assertEquals(end + 2, list.size());
 		}
 	}
@@ -355,11 +355,11 @@ public abstract class TestList {
 	public void testAddItemIndexAtSecondPoint()
 	{
 		list.add(1,"item");
-		assertEquals(list.get(1).getReturnValue(), ( resultSize <= 1 ? null : "item"));
-		assertEquals(list.get(2).getReturnValue(), resultSecondItem);
-		assertEquals(list.get(3).getReturnValue(), resultThirdItem);
-		assertEquals(list.get(4).getReturnValue(), resultFourthItem);
-		assertEquals(list.get(5).getReturnValue(), resultFifthItem);
+		assertEquals(( resultSize <= 1 ? null : "item"), list.get(1).getReturnValue());
+		assertEquals(resultSecondItem, list.get(2).getReturnValue());
+		assertEquals(resultThirdItem, list.get(3).getReturnValue());
+		assertEquals(resultFourthItem, list.get(4).getReturnValue());
+		assertEquals(resultFifthItem, list.get(5).getReturnValue());
 	}
 
 	@Test
