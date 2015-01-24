@@ -283,14 +283,14 @@ public abstract class TestList {
 	@Test
 	public void testRemNegativeIndexError()
 	{
-		 assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.remove(-1).getError());
+		 assertEquals((resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE : ErrorMessage.INDEX_OUT_OF_BOUNDS), list.remove(-1).getError());
 		 assertEquals(resultSize, list.size());
 	}
 	 
 	@Test
 	public void testRemOverboundError()
 	{
-		 assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.remove(resultSize).getError());
+		 assertEquals((resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE : ErrorMessage.INDEX_OUT_OF_BOUNDS), list.remove(resultSize).getError());
 		 assertEquals(resultSize, list.size());
 	}
 	
@@ -314,19 +314,19 @@ public abstract class TestList {
 	@Test
 	public void testAddIndexErrorNegativeIndex()
 	{
-		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.add(-1, "item").getError());
+		assertEquals((resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE : ErrorMessage.INDEX_OUT_OF_BOUNDS), list.add(-1, "item").getError());
 	}
 	
 	@Test
 	public void testAddIndexErrorUpperBoundIndex()
 	{
-		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, list.add(list.size(), "item").getError());
+		assertEquals((resultIsEmpty? ErrorMessage.EMPTY_STRUCTURE : ErrorMessage.INDEX_OUT_OF_BOUNDS), list.add(list.size(), "item").getError());
 	}
 	
 	@Test
 	public void testErrorMessageAddItemIndexAtZero()
 	{
-		assertEquals((resultIsEmpty ? ErrorMessage.INDEX_OUT_OF_BOUNDS : ErrorMessage.NO_ERROR), list.add(0, "item").getError());
+		assertEquals((resultIsEmpty ? ErrorMessage.EMPTY_STRUCTURE : ErrorMessage.NO_ERROR), list.add(0, "item").getError());
 	}
 	
 	@Test 
