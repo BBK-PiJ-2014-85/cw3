@@ -1,4 +1,9 @@
 
+package tests;
+
+import cw3.List;
+import cw3.ArrayList;
+
 public class TestArrayList extends TestList{
 
 	/*

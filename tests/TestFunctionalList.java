@@ -1,7 +1,13 @@
 
+package tests;
+
+import cw3.ErrorMessage;
+import cw3.FunctionalList;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /*
  * This contains the tests for for the methods of FunctionalList extra to those already in List.

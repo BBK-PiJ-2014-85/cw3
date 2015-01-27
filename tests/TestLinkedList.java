@@ -1,4 +1,9 @@
 
+package tests;
+
+import cw3.List;
+import cw3.LinkedList;
+
 public class TestLinkedList extends TestList{
 
 	/*

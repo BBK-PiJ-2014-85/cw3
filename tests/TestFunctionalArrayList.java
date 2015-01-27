@@ -1,4 +1,9 @@
 
+package tests;
+
+import cw3.List;
+import cw3.FunctionalArrayList;
+
 public class TestFunctionalArrayList extends TestFunctionalList{
 
 	/*

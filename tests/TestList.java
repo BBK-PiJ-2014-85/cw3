@@ -1,4 +1,10 @@
-import static org.junit.Assert.*;
+
+package tests;
+
+import cw3.List;
+import cw3.ErrorMessage;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
