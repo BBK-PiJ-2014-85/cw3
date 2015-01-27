@@ -4,57 +4,85 @@ package tests;
 import cw3.SampleableList;
 import cw3.SampleableListImpl;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class TestSampleableList {
 
 
-	SampleableList testList = new SampleableListImpl();
+	SampleableList testList;
 	
+	@Before
+	public void createList()
+	{
+		testList = new SampleableListImpl();
+	}
 	
 	@Test
 	public void testEmpty() {
-		SampleableList emptyList = new SampleableListImpl();
-		SampleableList newList=emptyList.sample();
+		SampleableList newList=testList.sample();
 		assertTrue(newList.isEmpty());
 	}
 	
 	@Test
 	public void  testSample(){
 
-		SampleableList list3 = new SampleableListImpl();
-		list3.add(1);
-		list3.add(2);
-		list3.add(3);
+		testList.add(1);
+		testList.add(2);
+		testList.add(3);
 		
-		SampleableList list3samp = list3.sample();
-		assertEquals(list3samp.size(), 2);
-		assertEquals(list3samp.get(0).getReturnValue(), 1);
-		assertEquals(list3samp.get(1).getReturnValue(), 3);
-		
-		SampleableList list4 = new SampleableListImpl();
-		list4.add(1);
-		list4.add(2);
-		list4.add(3);
-		
-		SampleableList list4samp = list4.sample();
-		assertEquals(list4samp.size(), 2);
-		assertEquals(list4samp.get(0).getReturnValue(), 1);
-		assertEquals(list4samp.get(1).getReturnValue(), 3);
+		SampleableList listSamp = testList.sample();
+		assertEquals(2, listSamp.size());
+		assertEquals(1, listSamp.get(0).getReturnValue());
+		assertEquals(3, listSamp.get(1).getReturnValue());
 	}
 	
 	@Test
-	public void testOriginalListUnaltered(){
-		SampleableList list = new SampleableListImpl();
-		list.add(new String[] {"original","second"});
-		SampleableList listSample = list.sample();
-		String[] items = (String[]) listSample.get(0).getReturnValue();
-		items[0]="changed";
-		assertEquals(((String []) list.get(0).getReturnValue())[0], "original");
+	public void testSampleAfterRemovingEntries(){
+		testList.add(1);
+		testList.add(2);
+		testList.add(3);
+		testList.add(4);
+		testList.add(5);
+		testList.add(6);
+		testList.remove(5);
+		testList.remove(4);
+		
+		SampleableList listSamp = testList.sample();
+		
+		assertEquals(2, listSamp.size());
+		assertEquals(1, listSamp.get(0).getReturnValue());
+		assertEquals(3, listSamp.get(1).getReturnValue());
+		
+	}
+	
+	@Test
+	public void testOriginalListUnalteredByRemovingFromSampled(){
+		
+		testList.add(1);
+		testList.add(2);
+		testList.add(3);
+		testList.add(4);
+		testList.add(5);
+		testList.add(6);
+		testList.add(7);
+		
+		SampleableList listSample = testList.sample();
+		listSample.remove(0);
+
+		assertEquals(7, testList.size());
+		assertEquals(1, testList.get(0).getReturnValue());
+		assertEquals(2, testList.get(1).getReturnValue());
+		assertEquals(3, testList.get(2).getReturnValue());
+		assertEquals(4, testList.get(3).getReturnValue());
+		assertEquals(5, testList.get(4).getReturnValue());
+		assertEquals(6, testList.get(5).getReturnValue());
+		assertEquals(7, testList.get(6).getReturnValue());
 	}
 
 }
