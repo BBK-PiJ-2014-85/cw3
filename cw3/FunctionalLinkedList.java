@@ -1,4 +1,6 @@
 
+package cw3;
+
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 
 	@Override

@@ -1,3 +1,6 @@
+
+package cw3;
+
 /**
  * A sampleable list can be sampled. 
  * 

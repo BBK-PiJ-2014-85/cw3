@@ -1,4 +1,6 @@
 
+package cw3;
+
 public class SampleableListImpl extends ArrayList implements SampleableList {
 
 

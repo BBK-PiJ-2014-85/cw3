@@ -1,4 +1,6 @@
 
+package cw3;
+
 public class ImprovedStackImpl implements ImprovedStack {
 
 	Stack internalStack = new StackImpl(new ArrayList());

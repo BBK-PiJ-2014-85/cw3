@@ -1,4 +1,6 @@
 
+package cw3;
+
 public class ReturnObjectImpl implements ReturnObject {
 
 	private ErrorMessage errorMsg;

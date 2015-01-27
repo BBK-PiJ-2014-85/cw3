@@ -1,4 +1,6 @@
 
+package cw3;
+
 public class ArrayList implements List {
 
 	private Object[] list = new Object[4];

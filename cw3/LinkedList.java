@@ -1,4 +1,6 @@
 
+package cw3;
+
 public class LinkedList implements List {
 
 	LinkedList next;
