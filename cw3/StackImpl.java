@@ -3,8 +3,8 @@ package cw3;
 
 public class StackImpl extends AbstractStack{
 
-	public StackImpl(List list) {
-		super(list);
+	public StackImpl() {
+		super(new ArrayList()); //CW doesn't state that list type should be selectable, and as it makes no difference to user it is set to an ArrayList
 	}
 
 	@Override
@@ -19,7 +19,6 @@ public class StackImpl extends AbstractStack{
 
 	@Override
 	public void push(Object item) {
-		//TODO: check if add(index,item) should be changed to allow adding to an empty list, which if so would make the code below slightly easier
 		if (internalList.isEmpty()) internalList.add(item);
 		else internalList.add(0,item);	
 	}
