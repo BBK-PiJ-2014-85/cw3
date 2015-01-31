@@ -40,7 +40,6 @@ public class ImprovedStackImpl implements ImprovedStack {
 		Stack rebuiltInternalStack = new StackImpl();
 		int size = internalStack.size();
 		Object[] items = new Object[size];
-		//TODO: Check reverse shouldn't delete the original stack, which just popping it off would. I therefore record values in an array and rebuild the internal stack afterwards
 		
 		int c = 0;
 		while (!internalStack.top().hasError())
@@ -65,9 +64,10 @@ public class ImprovedStackImpl implements ImprovedStack {
 
 		ImprovedStackImpl reversedValidStack = new ImprovedStackImpl();
 		
-		while (!internalStack.top().hasError()) 
+		while (internalStack.size() != 0) 
 		{
-			if (!internalStack.top().getReturnValue().equals(object)) reversedValidStack.push(internalStack.pop().getReturnValue());
+			if (!internalStack.top().getReturnValue().equals(object)) reversedValidStack.push(internalStack.top().getReturnValue());
+			internalStack.pop();
 		}
 		
 		internalStack = reversedValidStack.reverse();
