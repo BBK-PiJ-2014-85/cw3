@@ -19,6 +19,7 @@ public class StackImpl extends AbstractStack{
 
 	@Override
 	public void push(Object item) {
+		//CW spec says null item does not need to be dealt with, and therefore no checks are made here
 		if (internalList.isEmpty()) internalList.add(item);
 		else internalList.add(0,item);	
 	}
