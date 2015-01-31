@@ -3,7 +3,7 @@ package cw3;
 
 public class ImprovedStackImpl implements ImprovedStack {
 
-	Stack internalStack = new StackImpl(new ArrayList());
+	Stack internalStack = new StackImpl();
 	
 	@Override
 	public boolean isEmpty() {
@@ -37,7 +37,7 @@ public class ImprovedStackImpl implements ImprovedStack {
 		
 		if (internalStack.isEmpty()) return reversedStack;
 		
-		Stack rebuiltInternalStack = new StackImpl(new ArrayList());
+		Stack rebuiltInternalStack = new StackImpl();
 		int size = internalStack.size();
 		Object[] items = new Object[size];
 		//TODO: Check reverse shouldn't delete the original stack, which just popping it off would. I therefore record values in an array and rebuild the internal stack afterwards
