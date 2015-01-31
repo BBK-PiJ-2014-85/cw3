@@ -49,7 +49,7 @@ public class TestImprovedStack {
 	public void testOriginalErrorIsEmptyAfterReverseOnEmpty()
 	{
 		reversedStack = stack.reverse();
-		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getReturnValue());
+		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getError());
 	}
 	
 	@Test
@@ -70,7 +70,7 @@ public class TestImprovedStack {
 	public void testCopyErrorIsEmptyAfterReverseOnEmpty()
 	{
 		reversedStack = stack.reverse();
-		assertEquals(ErrorMessage.EMPTY_STRUCTURE,reversedStack.pop().getReturnValue());
+		assertEquals(ErrorMessage.EMPTY_STRUCTURE,reversedStack.pop().getError());
 	}
 	
 	@Test
@@ -193,7 +193,7 @@ public class TestImprovedStack {
 		
 		assertEquals(3,stack.pop().getReturnValue());
 		assertEquals(2,stack.pop().getReturnValue());
-		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getReturnValue());
+		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getError());
 	}
 	
 	@Test
@@ -219,7 +219,7 @@ public class TestImprovedStack {
 		
 		assertEquals(3,stack.pop().getReturnValue());
 		assertEquals(1,stack.pop().getReturnValue());
-		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getReturnValue());
+		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getError());
 	}
 	
 	@Test
@@ -233,7 +233,7 @@ public class TestImprovedStack {
 		
 		assertEquals(2,stack.pop().getReturnValue());
 		assertEquals(1,stack.pop().getReturnValue());
-		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getReturnValue());
+		assertEquals(ErrorMessage.EMPTY_STRUCTURE,stack.pop().getError());
 	}
 	
 	@Test
@@ -330,9 +330,6 @@ public class TestImprovedStack {
 		stack.push(2);
 		
 		stack.remove(2);
-		
-		System.out.println(stack.top().getReturnValue());
-
 		
 		assertEquals(3,stack.pop().getReturnValue());
 		assertEquals(1,stack.pop().getReturnValue());
