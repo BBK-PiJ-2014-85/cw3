@@ -49,7 +49,7 @@ public class LinkedList implements List {
 		{
 			value = next.getValue();
 			if (next.next == null) next = null;
-			else next.moveValuesForward();
+			else next = next.next;
 		}
 		else
 		{
@@ -62,7 +62,7 @@ public class LinkedList implements List {
 		if (next == null && value==null) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		if (index < 0) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		if (next == null && index !=0) { return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);}
-		return new ReturnObjectImpl();
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
 	
 	private Object getValue() {return value;}
@@ -70,7 +70,6 @@ public class LinkedList implements List {
 	@Override
 	public ReturnObject add(int index, Object item) {
 		
-		//TODO: Check boundaries for add(index,item) and that it is truely intended not to be able to add to an empty string at point 0
 		if (testBounds(index).hasError()) return testBounds(index);
 		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
@@ -81,13 +80,14 @@ public class LinkedList implements List {
 			temp.setNext(next);
 			value = item;
 			next = temp;
-			return new ReturnObjectImpl();
+			return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 		}
 		
 		return next.add(index - 1, item);
 	}
 	
 	private void setValue(Object item) {value = item;}
+	
 	private void setNext(LinkedList nextItem) {next = nextItem;}
 	
 	@Override
@@ -95,13 +95,13 @@ public class LinkedList implements List {
 	
 		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
-		if (value == null) 
+		if (value == null) //if no value set then this is where the item needs to be added
 		{
 			value = item;
-			return new ReturnObjectImpl();
+			return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 		}
 		
-		if (next == null) {next = new LinkedList();}
+		if (next == null) {next = new LinkedList();} // if current last then add a blank item next and run add() on this
 		
 		return next.add(item);
 	}
