@@ -16,7 +16,7 @@ public class FunctionalArrayList extends ArrayList implements FunctionalList {
 		FunctionalList rest = new FunctionalArrayList();
 		
 		int i = 1;
-		while(!get(i).hasError())
+		while(!get(i).hasError()) //error occurs once out of bounds
 		{
 			rest.add(get(i).getReturnValue());
 			i++;
