@@ -1,17 +1,18 @@
 
 package tests;
 
-import cw3.List;
+import interfaces.List;
 import cw3.FunctionalArrayList;
+
+/**
+ * This class tests the FunctionalArrayList implementation of FunctionalList by extending the TestFunctionalList test class.
+ * 
+ * @author Paul Day
+ */
 
 public class TestFunctionalArrayList extends TestFunctionalList{
 
-	/*
-	 * Extended class TestFunctionalList provides all the parameters and tests to be tested (via extension of the TestList class).
-	 * 
-	 * CreateList() as defined below ensures the tests being tested are as created by the class "FunctionalArrayList".
-	 */
-	
+
 	public TestFunctionalArrayList(int index, String name) {
 		super(index, name);	
 	}

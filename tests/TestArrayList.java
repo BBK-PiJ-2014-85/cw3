@@ -1,16 +1,16 @@
 
 package tests;
 
-import cw3.List;
+import interfaces.List;
 import cw3.ArrayList;
 
-public class TestArrayList extends TestList{
+/**
+ * This class tests the ArrayList implementation of List by extending the TestList test class.
+ * 
+ * @author Paul Day
+ */
 
-	/*
-	 * Extended class TestList contains all the parameters and tests to be tested.
-	 * 
-	 * CreateList() as defined below ensures the tests being tested are as created by the class "ArrayList".
-	 */
+public class TestArrayList extends TestList{
 
 	public TestArrayList(int index, String name) {
 		super(index, name);

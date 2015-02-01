@@ -1,8 +1,8 @@
 
 package tests;
 
-import cw3.ErrorMessage;
-import cw3.Stack;
+import interfaces.ErrorMessage;
+import interfaces.Stack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -1,9 +1,9 @@
 
 package tests;
 
-import cw3.ErrorMessage;
+import interfaces.ErrorMessage;
 import cw3.ImprovedStackImpl;
-import cw3.ImprovedStack;
+import interfaces.ImprovedStack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,7 +13,7 @@ import org.junit.Test;
 /**
  * This class tests the ImprovedStack methods for the implementation ImprovedStackImpl.
  * 
- * Test of Stack methods for this class can be found in the test class TestImprovedStackAsStack.
+ * Test of the Stack methods (i.e. those inherited by improved stack) for this class can be found in the test class TestImprovedStackAsStack.
  * Test of Stack methods for the returned "reverse()" stack can be found in TestReversedStackAsStack.
  * 
  * @author Paul Day

@@ -1,8 +1,8 @@
 
 package tests;
 
-import cw3.List;
-import cw3.ErrorMessage;
+import interfaces.List;
+import interfaces.ErrorMessage;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,19 +15,18 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-/*
- * This class contains the following:
- * 		- tests for methods within List
- * 		- multiple types of lists as different parameters and therefore the tests are run for all of these types of list
+
+/**
+ * This class contains the tests for testing implementations of the class "List". This is an abstract class, and therefore
+ * all implementations should extend this class, containing an actualisation of the abstract method "createStartingList()"
+ * which should return an empty list of the implementation type being tested.
  * 
- * This is an abstract class, which is extended for different list types by defining the createStartingList() method.
- * 
+ * The tests themselves are completed by creating lists in multiple types and situations, and feeding these in as parameters
+ * to the test methods.
+ *  
+ * @author Paul Day
  */
 
-/*
- * TODO: add method to check all elememnts and size to avoid repetition
- * 		- add final methods to testFunctionalList
- */
 
 @RunWith(Parameterized.class)
 public abstract class TestList {
@@ -36,7 +35,7 @@ public abstract class TestList {
 	
 	int index; // Index references which list is currently being tested from list of parameters
 	
-	// The methods with names starting with "result" are where the expected results for the current list being tested
+	// The fields with names starting with "result" are input as a parameter and are the values in the list currently being tested
 	int resultSize;
 	Boolean resultIsEmpty;
 	Object resultFirstItem;
@@ -46,8 +45,13 @@ public abstract class TestList {
 	Object resultFifthItem;
 	Object resultLastItem;
 
+	/**
+	 * Returns an empty list of the implementation of list being tested. Needs to be defined in every class extending this one.
+	 * 
+	 * @return an empty list of the type of implementation of list being tested
+	 */
 	
-	public abstract List createStartingList(); // Returns an empty list of the type of list to test, as defined within classes extending this one.
+	public abstract List createStartingList(); 
 
 	
 	public TestList(int index, String name) // Updates the indexID for the current list being tested, and reads in name to be displayed within the test results

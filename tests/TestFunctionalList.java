@@ -1,15 +1,15 @@
 
 package tests;
 
-import cw3.ErrorMessage;
-import cw3.FunctionalList;
+import interfaces.ErrorMessage;
+import interfaces.FunctionalList;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-/*
+/**
  * This contains the tests for for the methods of FunctionalList extra to those already in List.
  * 
  * This extends the class TestList, which tests the methods FunctionalList inherits from List.
@@ -19,6 +19,9 @@ import static org.junit.Assert.assertNull;
  * This class is abstract as it will be extended for each specific type of FunctionalList, which will be defined by the 
  * createStartingList() method as required by the extended TestList.
  * 
+ * 
+ * @author Paul Day
+ *
  */
 
 public abstract class TestFunctionalList extends TestList{
@@ -50,19 +53,6 @@ public abstract class TestFunctionalList extends TestList{
 		assertEquals(resultFourthItem, list.get(3).getReturnValue());
 		assertEquals(resultFifthItem, list.get(4).getReturnValue());
 	}
-	
-	/* Forums suggest this is out of scope (testing changes to complex types)
-	@Test
-	public void testListNotAlteredByChangesToReturnedHead()
-	{
-		FunctionalList testList = new FunctionalArrayList();
-		String[] testArray = new String [] {"original","two"};
-		testList.add(testArray);
-		String[] newObject = (String[]) testList.head().getReturnValue();
-		newObject[0] = "changed";
-		assertEquals("original", ((String[])testList.head().getReturnValue())[0]);
-	}
-	*/
 	
 	@Test
 	public void testRestReturnEmpty()
@@ -109,22 +99,6 @@ public abstract class TestFunctionalList extends TestList{
 		assertEquals(resultFifthItem, list.get(4).getReturnValue());
 	}
 
-	/* Forums suggest this test is now out of scope
-	@Test
-	public void testAlterComplexTypesInRestNotAlterOriginalList()
-	{
-		list.add(1);
-		list.add(new String[] {"original","second"});
-		
-		FunctionalList restList = ((FunctionalList) list).rest();
-		String[] complexObj= (String[])restList.get(resultSize).getReturnValue();
-		complexObj[0] = "changed";
-		
-		assertEquals("changed",((String[])restList.get(resultSize).getReturnValue())[0]);	
-		assertEquals("original",((String[])(list.get(resultSize + 1).getReturnValue()))[0]);
-		
-	}
-	*/
 }
 
 

@@ -1,16 +1,16 @@
 
 package tests;
 
-import cw3.List;
+import interfaces.List;
 import cw3.FunctionalLinkedList;
 
+/**
+ * This class tests the FunctionalLinkedList implementation of FunctionalList by extending the TestFunctionalList test class.
+ * 
+ * @author Paul Day
+ */
+
 public class TestFunctionalLinkedList extends TestFunctionalList{
-	
-	/*
-	 * Extended class TestFunctionalList provides all the parameters and tests to be tested (via extension of the TestList class).
-	 * 
-	 * CreateList() as defined below ensures the tests being tested are as created by the class "FunctionalLinkedList".
-	 */
 	
 	public TestFunctionalLinkedList(int index, String name) {
 		super(index, name);

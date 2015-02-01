@@ -1,7 +1,7 @@
 
 package tests;
 
-import cw3.SampleableList;
+import interfaces.SampleableList;
 import cw3.SampleableListImpl;
 
 
@@ -11,12 +11,14 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-/*
- * Tests the sample methods for the class "SampleableListImpl".
+/**
+ * Tests the sample methods for the SampleableListImpl implementation of SampleableList.
  * 
  * The classes TestSampleableListAsList and TestSampleableListSampleAsList also contribute to the testing
  * of this class by testing the typical "List" methods for both the sampleable list and the list returned by sample().
  * 
+ * @author Paul Day
+ *
  */
 
 public class TestSampleableList {

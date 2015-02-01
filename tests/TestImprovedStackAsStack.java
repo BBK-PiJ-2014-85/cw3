@@ -3,9 +3,7 @@ package tests;
 import cw3.ImprovedStackImpl;
 
 /**
- * Class to test to Stack features of ImprovedStackImpl by extending TestStack 
- * and setting the field "stack" being tested to an instance of ImprovedStackImpl
- * 
+ * Class to test to Stack methods of ImprovedStackImpl by extending the test class TestStack.
  * 
  * @author Paul Day
  *

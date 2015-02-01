@@ -1,17 +1,17 @@
 package tests;
 
-import cw3.List;
-import cw3.SampleableList;
+import interfaces.List;
+import interfaces.SampleableList;
 import cw3.SampleableListImpl;
 
-public class TestSampleableListSampleAsList extends TestList{
+/**
+ * Class tests the List methods of a SampleableListImpl provided as output by a sample() method on a SampleableListImpl implementing SampleableList.
+ * 
+ * @author Paul Day
+ *
+ */
 
-	/*
-	 * Extended class TestList contains all the parameters and tests to be tested.
-	 * 
-	 * CreateList() as defined below ensures tests are testing the List method classes for returned "SampleableList" returned 
-	 * when sampling "SampleableListImpl".
-	 */
+public class TestSampleableListSampleAsList extends TestList{
 	
 	public TestSampleableListSampleAsList(int index, String name) {
 		super(index, name);
