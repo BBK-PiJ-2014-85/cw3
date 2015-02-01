@@ -1,8 +1,15 @@
 
 package cw3;
 
-public class SampleableListImpl extends ArrayList implements SampleableList {
+import interfaces.SampleableList;
 
+/**
+ * An implementation of SampleableList which uses an ArrayList structure as the underlying list.
+ * 
+ * @author Paul Day
+ */
+
+public class SampleableListImpl extends ArrayList implements SampleableList {
 
 	@Override
 	public SampleableList sample() {

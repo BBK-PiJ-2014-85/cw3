@@ -1,6 +1,17 @@
 
 package cw3;
 
+import interfaces.ImprovedStack;
+import interfaces.ReturnObject;
+import interfaces.Stack;
+
+/**
+ * An implementation of ImprovedStack. 
+ * 
+ * @author Paul Day
+ *
+ */
+
 public class ImprovedStackImpl implements ImprovedStack {
 
 	Stack internalStack = new StackImpl();

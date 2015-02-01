@@ -1,6 +1,16 @@
 
 package cw3;
 
+import interfaces.ErrorMessage;
+import interfaces.FunctionalList;
+import interfaces.ReturnObject;
+
+/**
+ * An implementation of FunctionalList using an underlying list using pointers.
+ * 
+ * @author Paul Day
+ */
+
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 
 	@Override

@@ -1,6 +1,15 @@
 
 package cw3;
 
+import interfaces.AbstractStack;
+import interfaces.ReturnObject;
+
+/**
+ * A class with basic stack methods as defined by AbstractStack.
+ * 
+ * @author Paul Day
+ */
+
 public class StackImpl extends AbstractStack{
 
 	public StackImpl() {

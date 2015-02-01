@@ -1,6 +1,16 @@
 
 package cw3;
 
+import interfaces.ErrorMessage;
+import interfaces.List;
+import interfaces.ReturnObject;
+
+/**
+ * An implementation of List using pointers linking items within the list.
+ * 
+ * @author Paul Day
+ */
+
 public class LinkedList implements List {
 
 	LinkedList next;

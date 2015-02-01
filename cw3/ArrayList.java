@@ -1,6 +1,16 @@
 
 package cw3;
 
+import interfaces.List;
+import interfaces.ReturnObject;
+import interfaces.ErrorMessage;
+
+/**
+ * An implementation of List using Arrays.
+ * 
+ * @author Paul Day
+ */
+
 public class ArrayList implements List {
 
 	private static final int STARTING_ARRAY_SIZE = 4;

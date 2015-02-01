@@ -1,6 +1,17 @@
 
 package cw3;
 
+import interfaces.ErrorMessage;
+import interfaces.FunctionalList;
+import interfaces.ReturnObject;
+
+
+/**
+ * An implementation of FunctionalList using an ArrayList structure for the underlying list
+ * 
+ * @author Paul Day
+ */
+
 public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
 	@Override

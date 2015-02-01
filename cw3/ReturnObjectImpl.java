@@ -1,6 +1,15 @@
 
 package cw3;
 
+import interfaces.ReturnObject;
+import interfaces.ErrorMessage;
+
+/**
+ * A implementation of RetyurnObject.
+ * 
+ * @author Paul Day
+ */
+
 public class ReturnObjectImpl implements ReturnObject {
 
 	private ErrorMessage errorMsg;
