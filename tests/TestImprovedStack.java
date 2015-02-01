@@ -13,7 +13,8 @@ import org.junit.Test;
 /**
  * This class tests the ImprovedStack methods for the implementation ImprovedStackImpl.
  * 
- * Test of Stack methods for this class can be found in the test class TestImprovedStackAsStack
+ * Test of Stack methods for this class can be found in the test class TestImprovedStackAsStack.
+ * Test of Stack methods for the returned "reverse()" stack can be found in TestReversedStackAsStack.
  * 
  * @author Paul Day
  *
@@ -84,6 +85,31 @@ public class TestImprovedStack {
 		assertEquals(1,reversedStack.pop().getReturnValue());
 		assertEquals(2,reversedStack.pop().getReturnValue());
 		assertEquals(3,reversedStack.pop().getReturnValue());
+	}
+	
+	@Test
+	public void testReversedStackTop()
+	{
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		reversedStack = stack.reverse();
+		
+		reversedStack.top();
+		assertEquals(1,reversedStack.top().getReturnValue());
+	}
+	
+	@Test
+	public void testPushOnReversedStack()
+	{
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		reversedStack = stack.reverse();
+		
+		reversedStack.push(4);
+		
+		assertEquals(4,reversedStack.top().getReturnValue());
 	}
 	
 	@Test
