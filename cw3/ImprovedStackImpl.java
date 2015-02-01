@@ -38,11 +38,13 @@ public class ImprovedStackImpl implements ImprovedStack {
 		if (internalStack.isEmpty()) return reversedStack;
 		
 		Stack rebuiltInternalStack = new StackImpl();
+		
 		int size = internalStack.size();
+		
 		Object[] items = new Object[size];
 		
 		int c = 0;
-		while (!internalStack.top().hasError())
+		while (!internalStack.top().hasError()) //take all items out of current stack and store in an array
 		{
 			items[c] = internalStack.pop().getReturnValue();
 			c++;
@@ -50,8 +52,8 @@ public class ImprovedStackImpl implements ImprovedStack {
 		
 		for (int i = 0; i < size; i++)
 		{
-			reversedStack.push(items[i]);
-			rebuiltInternalStack.push(items[size - 1 - i]);
+			reversedStack.push(items[i]); //add items to reverse stack in the order they came out original stack
+			rebuiltInternalStack.push(items[size - 1 - i]); //add items to the internal stack in the opposite order they came out to rebuild internal stack
 		}
 			
 		internalStack = rebuiltInternalStack;
@@ -66,11 +68,17 @@ public class ImprovedStackImpl implements ImprovedStack {
 		
 		while (internalStack.size() != 0) 
 		{
-			if (!internalStack.top().getReturnValue().equals(object)) reversedValidStack.push(internalStack.top().getReturnValue());
+			if (!internalStack.top().getReturnValue().equals(object)) //if the top value isn't to be removed ...
+			{
+				reversedValidStack.push(internalStack.top().getReturnValue()); //... store it in the temporary stack to be kept
+			}
 			internalStack.pop();
 		}
 		
-		internalStack = reversedValidStack.reverse();
+		/*Add elements to be kept back in the original stack. While using reversedValidStack.reverse() would have the same effect,
+		  it would be less efficient as it would also maintain "reversedValidStack", which is not required */
+		while (reversedValidStack.size() != 0) internalStack.push(reversedValidStack.pop().getReturnValue());
+		
 	}
 
 }
