@@ -3,8 +3,10 @@ package cw3;
 
 public class ArrayList implements List {
 
-	private Object[] list = new Object[4];
-	//TODO: Decide on a more sensible size for the array
+	private static final int STARTING_ARRAY_SIZE = 4;
+	
+	private Object[] list = new Object[STARTING_ARRAY_SIZE];
+	private int size = 0;
 	
 	@Override
 	public boolean isEmpty() {
@@ -14,14 +16,7 @@ public class ArrayList implements List {
 	}
 
 	@Override
-	public int size() {
-
-		if (isEmpty()) return 0;
-		
-		int i=0;
-		while (list[i] != null) i++;
-		return i;
-	}
+	public int size() {return size;}
 
 	@Override
 	public ReturnObject get(int index) {
@@ -39,39 +34,47 @@ public class ArrayList implements List {
 		ReturnObject rtnItem = new ReturnObjectImpl(list[index]);
 		list[index] = null;
 		
-		while (list[index + 1] != null)
+		while (list[index + 1] != null) //Moves all elements in the array after that just removed forward 1 in the array
 		{
 			list[index] = list[index + 1];
 			list[index+1] = null;
 			index++;
 		}
 		
+		size--;
+		
 		return rtnItem;
 	}
 
 	@Override
 	public ReturnObject add(int index, Object item) {
-		
-		//TODO: remove the checks as not all required
-		//TODO: check whether they really mean greater than or equal (i.e. we cant add to 0 if list is empty). For now, have qwerk in stack program to account for this
-		
+				
 		if (testBound(index).hasError()) return testBound(index);
 		if (item == null) return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
 		if (list.length == size() + 1) extendArray();
 		
-		for (int i = size() - 1; i >= index ; i--) { list[i+1] = list[i]; }
+		for (int i = size() - 1; i >= index ; i--) { list[i+1] = list[i]; } //Move all items in list back one after where the object needs to be inserted
 		
 		list[index] = item;
 		
-		return new ReturnObjectImpl();
+		size++;
+		
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
+	
+	/**
+	 * Tests if the index of the list is within the bounds of the list. Negative indexes, or those too high return an error message.
+	 * 
+	 * @param index the location of the list to check (first element is 0)
+	 * @return an appropriate error message if the list is empty or the index is out of bounds, or no error otherwise, encapsulated within a ReturnObject
+	 */
 	
 	private ReturnObject testBound(int index)
 	{
-		if (size() == 0) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE); //TODO: Doesn't explicitly say this is required so consider this further
+		if (size() == 0) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		if (index + 1 > size() || index < 0) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
-		return new ReturnObjectImpl();
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
 
 	@Override
@@ -83,9 +86,14 @@ public class ArrayList implements List {
 
 		list[size()] = item;
 		
-		//TODO: This needs to be set to return empty returnObject - currently returning one with just a ErrorMessage.NO_ERROR, defined by an empty constructor
-		return new ReturnObjectImpl();
+		size++;
+		
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
+	
+	/**
+	 * Extends the array holding the list by doubling its length and copying over the elements already in the list into the same position.
+	 */
 	
 	private void extendArray()
 	{
