@@ -15,11 +15,12 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 		
 		FunctionalList rest = new FunctionalLinkedList();
 		
-		int i = 1;
-		while(!get(i).hasError())
+		LinkedList nextItem = next;
+		
+		while(nextItem != null)
 		{
-			rest.add(get(i).getReturnValue());
-			i++;
+			rest.add(nextItem.value);
+			nextItem = nextItem.next;
 		}
 		
 		return rest;
